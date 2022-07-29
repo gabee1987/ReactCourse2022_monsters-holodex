@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      name: 'Gabee'
+    }
+  }
 
   render() {
     return (
@@ -10,8 +17,11 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Hello {this.state.name}!
           </p>
+          <button>
+            Change name
+          </button>
           <a
             className="App-link"
             href="https://reactjs.org"
