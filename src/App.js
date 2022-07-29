@@ -24,9 +24,18 @@ class App extends Component {
             // console.log(this.state);
 
             // Instead, we should use setState()
-            this.setState({ name: {firstName: 'Gabor', lastName: 'Koncz'} }); // Shallow merging
-            console.log(this.state);
-          }}>
+            this.setState(
+              () => { // The first anonymous function is an updater function, the object in this will be used in shallow merge with the state
+                return {
+                  name: {firstName: 'Gabor', lastName: 'Koncz'}
+                } 
+              },
+              () => { // This is a callback that only runs after the update method finished (it is optional)
+                console.log(this.state);
+              }
+            ); // Shallow merging
+          }}
+          >
             Change name
           </button>
           <a
