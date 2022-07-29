@@ -7,7 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
-      name: 'Gabee'
+      name: 'Stranger'
     }
   }
 
@@ -19,7 +19,14 @@ class App extends Component {
           <p>
             Hello {this.state.name}!
           </p>
-          <button>
+          <button onClick={() => {
+            // We shouldn't set state directly because react will not render it if the obj is the same
+            // this.state.name = 'Gabee';
+            // console.log(this.state);
+
+            // Instead, we should use setState()
+            this.setState({ name: 'Gabee' }); // Shallow merging
+          }}>
             Change name
           </button>
           <a
