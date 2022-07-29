@@ -7,7 +7,8 @@ class App extends Component {
     super();
 
     this.state = {
-      name: 'Stranger'
+      name: {firstName: 'Stranger', lastName: 'Joe'},
+      company: 'BiffCo'
     }
   }
 
@@ -16,16 +17,15 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hello {this.state.name}!
-          </p>
+          <p>Hello {this.state.name.firstName} {this.state.name.lastName}, I work at {this.state.company}</p>
           <button onClick={() => {
             // We shouldn't set state directly because react will not render it if the obj is the same
             // this.state.name = 'Gabee';
             // console.log(this.state);
 
             // Instead, we should use setState()
-            this.setState({ name: 'Gabee' }); // Shallow merging
+            this.setState({ name: {firstName: 'Gabor', lastName: 'Koncz'} }); // Shallow merging
+            console.log(this.state);
           }}>
             Change name
           </button>
