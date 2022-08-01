@@ -7,25 +7,22 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: [
-        {
-          name: 'Linda',
-          id: '1e2e111' // The key value is important so React can differetiate the invidual elements when its need to render one
-        },
-        {
-          name: 'Frank',
-          id: '1e2e112'
-        },
-        {
-          name: 'Jacky',
-          id: '1e2e113'
-        },
-        {
-          name: 'Billy',
-          id: '1e2e114'
-        }
-      ]
+      monsters: []
     };
+  }
+
+  // Lifecycle methods
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users') // This will be a promise, thats asynchronous in JS (will going to happen)
+      .then((response) => response.json() ) // This is a callback
+      .then((users) => // Another callback
+        this.setState(
+        () => { // Function method
+          return {monsters: users}
+        },
+        () => {
+          console.log(this.state);
+        }));
   }
 
   render() {
