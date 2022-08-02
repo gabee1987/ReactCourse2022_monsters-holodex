@@ -8,6 +8,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
+      searchfield: "",
     };
     console.log("constructor");
   }
@@ -34,23 +35,33 @@ class App extends Component {
       );
   }
 
-  handleMonsterFilter(event) {
-    console.log(event.target.value);
-    console.log(this.state.monsters);
+  // handleMonsterFilter(event) {
+  //   console.log(event.target.value);
+  //   console.log({ startingArraythis: this.state.monsters });
 
-    const inputValue = event.target.value.toLowerCase();
-    const filteredMonsters = this.state.monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(inputValue)
-    );
+  //   const searchfield = event.target.value.toLowerCase();
+  //   const filteredMonsters = this.state.monsters.filter((monster) =>
+  //     monster.name.toLowerCase().includes(this.state.searchfield)
+  //   );
 
-    console.log(filteredMonsters);
-    this.setState({
-      monsters: filteredMonsters,
-    });
-  }
+  //   console.log(filteredMonsters);
+  //   this.setState(
+  //     () => {
+  //       return { searchfield };
+  //     },
+  //     () => {
+  //       console.log({ endingArray: this.state.monsters });
+  //     }
+  //   );
+  // }
 
   render() {
     console.log("render");
+
+    const filteredMonsters = this.state.monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(this.state.searchfield)
+    );
+
     return (
       <div className="App">
         <input
@@ -58,10 +69,13 @@ class App extends Component {
           type="search"
           placeholder="search monsters"
           onChange={(event) => {
-            this.handleMonsterFilter(event);
+            const searchfield = event.target.value.toLowerCase();
+            this.setState(() => {
+              return { searchfield };
+            });
           }}
         />
-        {this.state.monsters.map((monster) => {
+        {filteredMonsters.map((monster) => {
           // The first argument of the callback function is the element in the collection
           return (
             <div key={monster.id}>
