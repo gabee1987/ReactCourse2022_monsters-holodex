@@ -35,31 +35,23 @@ class App extends Component {
       );
   }
 
-  // handleMonsterFilter(event) {
-  //   console.log(event.target.value);
-  //   console.log({ startingArraythis: this.state.monsters });
-
-  //   const searchfield = event.target.value.toLowerCase();
-  //   const filteredMonsters = this.state.monsters.filter((monster) =>
-  //     monster.name.toLowerCase().includes(this.state.searchfield)
-  //   );
-
-  //   console.log(filteredMonsters);
-  //   this.setState(
-  //     () => {
-  //       return { searchfield };
-  //     },
-  //     () => {
-  //       console.log({ endingArray: this.state.monsters });
-  //     }
-  //   );
-  // }
+  // By extracting this function to a named function, instead of using an anonymous one, we got better readability and performance as well
+  onSearchChange = (event) => {
+    const searchfield = event.target.value.toLowerCase();
+    this.setState(() => {
+      return { searchfield };
+    });
+  };
 
   render() {
     console.log("render");
 
-    const filteredMonsters = this.state.monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(this.state.searchfield)
+    // We save out these objects to variables, so wont need to use 'this.' all the time
+    const { monsters, searchfield } = this.state;
+    const { onSearchChange } = this;
+
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchfield)
     );
 
     return (
@@ -68,12 +60,7 @@ class App extends Component {
           className="search-box"
           type="search"
           placeholder="search monsters"
-          onChange={(event) => {
-            const searchfield = event.target.value.toLowerCase();
-            this.setState(() => {
-              return { searchfield };
-            });
-          }}
+          onChange={onSearchChange}
         />
         {filteredMonsters.map((monster) => {
           // The first argument of the callback function is the element in the collection
