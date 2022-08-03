@@ -3,7 +3,6 @@
 body {
   margin: 0;
   padding: 3em;
-  /* font-family: 'Mouse Memoirs', sans-serif; */
   font-family: 'Cairo', sans-serif;
   /* color: #fff; */
   -webkit-font-smoothing: antialiased;
@@ -16,4 +15,11 @@ body {
   background: url(../public/bg-pattern.png);
   background-repeat: repeat;
   text-align: center;
+}
+
+.app-title {
+  font-family: 'Mouse Memoirs', sans-serif;
+  color: #95dada;
+  font-size: 6em;
+  margin: 0.3em;
 }

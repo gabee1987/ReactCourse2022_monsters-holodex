@@ -12,12 +12,31 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;          
   border-radius: 0.5rem;
   transform: scale(0.95, 0.95);
-  transition: all ease-out 250ms;
+  transition: all cubic-bezier(0.175, 0.885, 0.32, 1.675) 250ms;
   max-width: 250px;
 }
 
 .card-container:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  transform: translateY(-0.75em) scale(1, 1);
+  transform: translateY(-0.75em) scale(1, 1) rotate(1.2deg);
+  /* animation: wiggly both 250ms ease-out; */
   z-index: 1;
 }
+
+/* @keyframes wiggly {
+  0% {
+    -webkit-transform: translateY(-0.35em) scale(0.95, 0.95) rotate(0deg);
+  }
+  25% {
+    -webkit-transform: translateY(-0.55em) scale(0.98, 0.98) rotate(0.5deg);
+  }
+  50% {
+    -webkit-transform: translateY(-0.75em) scale(1, 1) rotate(1deg);
+  }
+  75% {
+    -webkit-transform: translateY(-0.95em) scale(1.03, 1.03) rotate(0.5deg);
+  }
+  100% {
+    -webkit-transform: translateY(-0.75em) scale(1, 1) rotate(0deg);
+  }
+} */
