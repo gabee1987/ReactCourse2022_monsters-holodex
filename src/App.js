@@ -1,9 +1,9 @@
-import { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
 // Components
-import CardList from "./components/card-list/card-list.component";
+import CardList from './components/card-list/card-list.component';
 
 class App extends Component {
   constructor() {
@@ -11,30 +11,22 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchfield: "",
+      searchfield: '',
     };
-    console.log("constructor");
   }
 
   // Lifecycle methods
   componentDidMount() {
-    console.log("componentDidMount");
-
-    fetch("https://jsonplaceholder.typicode.com/users") // This will be a promise, thats asynchronous in JS (will going to happen)
+    fetch('https://jsonplaceholder.typicode.com/users') // This will be a promise, thats asynchronous in JS (will going to happen)
       .then((response) => response.json()) // This is a callback
       .then(
         (
           users // Another callback
         ) =>
-          this.setState(
-            () => {
-              // Function method
-              return { monsters: users };
-            },
-            () => {
-              console.log(this.state);
-            }
-          )
+          this.setState(() => {
+            // Function methodd
+            return { monsters: users };
+          })
       );
   }
 
@@ -47,8 +39,7 @@ class App extends Component {
   };
 
   render() {
-    console.log("render");
-
+    console.log('render');
     // We save out these objects to variables, so wont need to use 'this.' all the time
     const { monsters, searchfield } = this.state;
     const { onSearchChange } = this;
@@ -65,15 +56,7 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onSearchChange}
         />
-        {/* {filteredMonsters.map((monster) => {
-          // The first argument of the callback function is the element in the collection
-          return (
-            <div key={monster.id}>
-              <h1>{monster.name}</h1>
-            </div>
-          );
-        })} */}
-        <CardList />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
