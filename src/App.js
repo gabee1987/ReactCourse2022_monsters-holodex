@@ -19,14 +19,11 @@ class App extends Component {
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users') // This will be a promise, thats asynchronous in JS (will going to happen)
       .then((response) => response.json()) // This is a callback
-      .then(
-        (
-          users // Another callback
-        ) =>
-          this.setState(() => {
-            // Function methodd
-            return { monsters: users };
-          })
+      .then((users) =>
+        this.setState(() => {
+          // Function method
+          return { monsters: users };
+        })
       );
   }
 
@@ -39,7 +36,7 @@ class App extends Component {
   };
 
   render() {
-    console.log('render');
+    console.log('render from AppJS');
     // We save out these objects to variables, so wont need to use 'this.' all the time
     const { monsters, searchfield } = this.state;
     const { onSearchChange } = this;
