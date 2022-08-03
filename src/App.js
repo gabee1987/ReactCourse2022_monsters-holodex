@@ -2,6 +2,9 @@ import { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+// Components
+import CardList from "./components/card-list/card-list.component";
+
 class App extends Component {
   constructor() {
     super();
@@ -35,7 +38,7 @@ class App extends Component {
       );
   }
 
-  // By extracting this function to a named function, instead of using an anonymous one, we got better readability and performance as well
+  // By extracting this function to a named function, instead of using an anonymous one, we got better code readability and performance as well
   onSearchChange = (event) => {
     const searchfield = event.target.value.toLowerCase();
     this.setState(() => {
@@ -62,14 +65,15 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onSearchChange}
         />
-        {filteredMonsters.map((monster) => {
+        {/* {filteredMonsters.map((monster) => {
           // The first argument of the callback function is the element in the collection
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
             </div>
           );
-        })}
+        })} */}
+        <CardList />
       </div>
     );
   }
