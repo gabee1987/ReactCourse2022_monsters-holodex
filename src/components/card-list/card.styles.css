@@ -1,0 +1,23 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #95dada;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 25px;
+  cursor: pointer;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;          
+  border-radius: 0.5rem;
+  transform: scale(0.95, 0.95);
+  transition: all ease-out 250ms;
+  max-width: 250px;
+}
+
+.card-container:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transform: translateY(-0.75em) scale(1, 1);
+  z-index: 1;
+}

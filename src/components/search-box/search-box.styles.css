@@ -3,9 +3,10 @@
   border: none;
   border-radius: 0.3em;
   outline: none;
-  padding: 0.2em;
+  padding: 0.5em 1em;
   width: 15em;
   line-height: 2em;
   margin: 1.5em;
   background-color: rgb(191, 226, 219);
+  font-size: 18px;
 }
