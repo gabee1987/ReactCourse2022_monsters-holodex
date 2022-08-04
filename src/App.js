@@ -6,6 +6,16 @@ import './App.css';
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
 
+// As a functional component it would look like this ->
+// const App = () => {
+//   return (
+//     <div>
+//       <h1>This is a functional component</h1>
+//     </div>
+//   );
+// };
+
+// This is a class component
 class App extends Component {
   constructor() {
     super();
