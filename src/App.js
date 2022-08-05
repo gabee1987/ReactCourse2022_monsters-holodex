@@ -24,7 +24,6 @@ const App = () => {
       return monster.name.toLowerCase().includes(searchField);
     });
 
-    console.log('effect is firing');
     setFilteredMonsters(newfilteredMonsters);
   }, [monsters, searchField]);
 

@@ -13,6 +13,9 @@ import reportWebVitals from './reportWebVitals';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+// With StrictMode we will see double render amount, beacuse react makes sure that no wierd behavior is happening
+// It will alert us if we use any dprecated code also
 root.render(
   <React.StrictMode>
     <App />
