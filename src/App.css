@@ -22,4 +22,5 @@ body {
   color: #95dada;
   font-size: 6em;
   margin: 0.3em;
+  text-shadow: 1px 1px 10px #000;
 }

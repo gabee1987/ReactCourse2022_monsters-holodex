@@ -9,4 +9,5 @@
   margin: 1.5em;
   background-color: rgb(191, 226, 219);
   font-size: 18px;
+  box-shadow: 1px 1px 10px #000;
 }
