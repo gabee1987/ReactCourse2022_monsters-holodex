@@ -1,4 +1,4 @@
-import { useState } from 'react'; // This is a Hook, with this we can encapsulate local state in a functional component
+import { useState, useEffect } from 'react'; // This is a Hook, with this we can encapsulate local state in a functional component
 import './App.css';
 
 // Components
@@ -9,22 +9,29 @@ import SearchBox from './components/search-box/search-box.component';
 const App = () => {
   const [searchField, setSearchField] = useState(''); // Array destructuring, it gives us back 2 value: [value, setValue]
   const [monsters, setMonsters] = useState([]);
-  console.log(searchField);
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
   console.log('render');
 
-  // If we would just use fetch here, it would cause an infinite rerender cycle
-  // fetch('https://jsonplaceholder.typicode.com/users') // This will be a promise, thats asynchronous in JS (will going to happen)
-  //   .then((response) => response.json()) // This is a callback
-  //   .then((users) => setMonsters(users));
+  // The first argument is going to be a callback function, the 2nd argument is an array of dependencies
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users') // This will be a promise, thats asynchronous in JS (will going to happen)
+      .then((response) => response.json()) // This is a callback
+      .then((users) => setMonsters(users));
+  }, []); // This array has to be empty because we only want to call fetch once, if nothing changes in the array, the fetch wont run again
+
+  useEffect(() => {
+    const newfilteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchField);
+    });
+
+    console.log('effect is firing');
+    setFilteredMonsters(newfilteredMonsters);
+  }, [monsters, searchField]);
 
   const onSearchChange = (event) => {
     const searchfieldString = event.target.value.toLowerCase();
     setSearchField(searchfieldString);
   };
-
-  const filteredMonsters = monsters.filter((monster) => {
-    return monster.name.toLowerCase().includes(searchField);
-  });
 
   return (
     <div className="App">
