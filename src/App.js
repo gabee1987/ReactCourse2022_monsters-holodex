@@ -1,6 +1,4 @@
 import { useState } from 'react'; // This is a Hook, with this we can encapsulate local state in a functional component
-
-import logo from './logo.svg';
 import './App.css';
 
 // Components
@@ -10,12 +8,23 @@ import SearchBox from './components/search-box/search-box.component';
 // As a functional component it looks like this ->
 const App = () => {
   const [searchField, setSearchField] = useState(''); // Array destructuring, it gives us back 2 value: [value, setValue]
+  const [monsters, setMonsters] = useState([]);
   console.log(searchField);
+  console.log('render');
+
+  // If we would just use fetch here, it would cause an infinite rerender cycle
+  // fetch('https://jsonplaceholder.typicode.com/users') // This will be a promise, thats asynchronous in JS (will going to happen)
+  //   .then((response) => response.json()) // This is a callback
+  //   .then((users) => setMonsters(users));
 
   const onSearchChange = (event) => {
     const searchfieldString = event.target.value.toLowerCase();
     setSearchField(searchfieldString);
   };
+
+  const filteredMonsters = monsters.filter((monster) => {
+    return monster.name.toLowerCase().includes(searchField);
+  });
 
   return (
     <div className="App">
@@ -25,7 +34,7 @@ const App = () => {
         placeholder={'search monsters'}
         className={'monsters-search-box'}
       />
-      {/* <CardList monsters={filteredMonsters} /> */}
+      <CardList monsters={filteredMonsters} />
     </div>
   );
 };
