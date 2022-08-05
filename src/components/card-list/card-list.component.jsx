@@ -10,7 +10,7 @@ const CardList = ({ monsters }) => (
   // In a component only one parent element can be present at a time, in this case one div
   <div className="card-list">
     {monsters.map((monster) => {
-      return <Card monster={monster} />;
+      return <Card key={monster.id} monster={monster} />;
     })}
   </div>
 );
