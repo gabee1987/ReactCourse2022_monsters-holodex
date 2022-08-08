@@ -8,6 +8,7 @@ import SearchBox from './components/search-box/search-box.component';
 // As a functional component it looks like this ->
 const App = () => {
   const [searchField, setSearchField] = useState(''); // Array destructuring, it gives us back 2 value: [value, setValue]
+  const [title, setTitle] = useState('');
   const [monsters, setMonsters] = useState([]);
   const [filteredMonsters, setFilteredMonsters] = useState(monsters);
   console.log('render');
@@ -32,13 +33,26 @@ const App = () => {
     setSearchField(searchfieldString);
   };
 
+  // We can check what parts of the app is being rerendered after the title change ->
+  // Chrome -> F12 -> ... -> More tools -> Rendering -> Paint Flashing
+  const onTitleChange = (event) => {
+    const searchfieldString = event.target.value;
+    setTitle(searchfieldString);
+  };
+
   return (
     <div className="App">
-      <h1 className="app-title">Monsters Rolodex</h1>
+      <h1 className="app-title">{title}</h1>
       <SearchBox
         onChangeHandler={onSearchChange}
         placeholder={'search monsters'}
         className={'monsters-search-box'}
+      />
+      <br />
+      <SearchBox
+        onChangeHandler={onTitleChange}
+        placeholder={'set app title'}
+        className={'title-search-box'}
       />
       <CardList monsters={filteredMonsters} />
     </div>
